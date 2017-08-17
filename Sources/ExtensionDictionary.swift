@@ -79,8 +79,8 @@ extension Dictionary {
      - returns: New dictionary of transformed values.
      */
     internal func flatMap<KeyPrime : Hashable, ValuePrime>(_ transform: (Key, Value) throws -> (KeyPrime, ValuePrime)?) rethrows -> [KeyPrime : ValuePrime] {
-        return Dictionary<KeyPrime,ValuePrime>(elements: try flatMap({ (key, value) in
-            return try transform(key, value)
+        return Dictionary<KeyPrime,ValuePrime>(elements: try flatMap({ dict in
+            return try transform(dict.key, dict.value)
         }))
     }
     
